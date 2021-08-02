@@ -1,11 +1,10 @@
 import { Router } from 'express';
 
-// import UserRepository from '../../typeorm/repositories/UserRepository';
+import MoviesControllers from '../controllers/UsersController';
 
 const userRouter = Router();
+const moviesControllers = new MoviesControllers();
 
-userRouter.get('/', async (req, res) => {
-  return res.json({ message: 'LogSierra Users' });
-});
+userRouter.get('/', moviesControllers.get);
 
 export default userRouter;
