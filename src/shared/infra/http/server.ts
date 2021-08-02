@@ -1,12 +1,11 @@
 import 'reflect-metadata';
+import 'dotenv/config';
 
-import dotenv from 'dotenv';
 import express from 'express';
 import routes from './routes';
 
 import '../typeorm';
-
-dotenv.config
+// import '../../container';
 
 const app = express();
 

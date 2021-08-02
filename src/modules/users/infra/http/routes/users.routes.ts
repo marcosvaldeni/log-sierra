@@ -1,10 +1,10 @@
 import { Router } from 'express';
 
-import MoviesControllers from '../controllers/UsersController';
+import UserControllers from '../controllers/UsersController';
 
 const userRouter = Router();
-const moviesControllers = new MoviesControllers();
+const usersControllers = new UserControllers();
 
-userRouter.get('/', moviesControllers.get);
+userRouter.post('/', usersControllers.create);
 
 export default userRouter;
