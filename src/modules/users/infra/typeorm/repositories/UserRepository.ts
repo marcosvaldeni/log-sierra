@@ -1,6 +1,6 @@
 import { getRepository, Repository } from 'typeorm';
 import ICreateUserDTO from "../../../dtos/ICreateUserDTO";
-import IUserRepository from "../../../repositories/IUsersRepository";
+import IUserRepository from "../../../repositories/IUserRepository";
 import User from '../entities/User';
 
 class UserRepository implements IUserRepository {
@@ -21,12 +21,19 @@ class UserRepository implements IUserRepository {
   public async findAll(): Promise<User[] | undefined> {
     throw new Error("Method not implemented.");
   }
+
   public async findByEmail(email: string): Promise<User | undefined> {
-    throw new Error("Method not implemented.");
+    const user = await this.ormRepository.findOne({
+      where: { email }
+    });
+
+    return user;
   }
+
   public async update(data: ICreateUserDTO): Promise<User> {
     throw new Error("Method not implemented.");
   }
+
   public async delete(id: string): Promise<boolean> {
     throw new Error("Method not implemented.");
   }
