@@ -5,7 +5,7 @@ import express from 'express';
 import routes from './routes';
 
 import '../typeorm';
-// import '../../container';
+import '../../container';
 
 const app = express();
 

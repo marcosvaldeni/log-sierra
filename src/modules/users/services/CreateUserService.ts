@@ -1,10 +1,7 @@
-import { getCustomRepository } from 'typeorm';
-// import { injectable, inject } from 'tsyringe';
+import { injectable, inject } from 'tsyringe';
 
 import User from '../infra/typeorm/entities/User';
-// import IUsersRepository from '../repositories/IUsersRepository';
-
-import UsersRepository from '../infra/typeorm/repositories/UserRepository';
+import IUsersRepository from '../repositories/IUsersRepository';
 
 interface Request {
   name: string,
@@ -12,25 +9,26 @@ interface Request {
   password: string,
 }
 
+@injectable()
 class CreateUserService {
-  // constructor(private usersRepository: IUsersRepository) {}
+  constructor(
+    @inject('UserRepository')
+    private usersRepository: IUsersRepository
+  ) {}
 
   public async execute({ name, email, password }: Request): Promise<User> {
-    const usersRepository = getCustomRepository(UsersRepository);
 
-    const user = await usersRepository.create({
+    const user = await this.usersRepository.create({
       name,
       email,
       password
     });
 
-    await usersRepository.save(user); 
-
     // const user = {
-    //   name,
-    //   email,
-    //   password
-    // };  
+    //   name: 'marcos',
+    //   email: 'marcos@email.com',
+    //   password: 'fdslkfjl'
+    // } as User;  
 
     return user;
   }
