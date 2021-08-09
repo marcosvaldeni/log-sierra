@@ -30,7 +30,7 @@ class CreateUserService {
       password
     });  
 
-    return {} as User;
+    return user;
   }
 }
 
