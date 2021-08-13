@@ -37,7 +37,7 @@ class UserRepository implements IUserRepository {
   public async delete(id: string): Promise<boolean> {
     throw new Error("Method not implemented.");
   }
-  
+
 }
 
 export default UserRepository;
