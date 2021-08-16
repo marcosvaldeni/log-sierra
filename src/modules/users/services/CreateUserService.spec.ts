@@ -3,17 +3,21 @@ import 'reflect-metadata';
 import AppError from '../../../shared/errors/AppError';
 
 import FakeUserRepository from '../repositories/fakes/FakeUserRepository';
+import FakeHashProvider from '../providers/HashProvider/fakes/FakeHashProvider';
 import CreateUserService from './CreateUserService';
 
 let fakeUserRepository: FakeUserRepository;
 let createUserService: CreateUserService;
+let fakeHashProvider: FakeHashProvider;
 
 describe('CreateUser', () => {
   beforeEach(() => {
     fakeUserRepository = new FakeUserRepository();
+    fakeHashProvider = new FakeHashProvider();
 
     createUserService = new CreateUserService(
-      fakeUserRepository
+      fakeUserRepository,
+      fakeHashProvider
     );
   });
 

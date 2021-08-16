@@ -5,7 +5,7 @@ import IUserRepository from '../IUserRepository';
 import User from '../../infra/typeorm/entities/User';
 import ICreateUserDTO from '../../dtos/ICreateUserDTO';
 
-class UserRepository implements IUserRepository {
+class FakeUserRepository implements IUserRepository {
   private users: User[] = [];
 
   public async create(data: ICreateUserDTO): Promise<User> {
@@ -33,4 +33,4 @@ class UserRepository implements IUserRepository {
   }
 }
 
-export default UserRepository;
+export default FakeUserRepository;

@@ -1,6 +1,6 @@
 import { sign } from 'jsonwebtoken';
-import authConfig from '../../../config/auth';
 import { inject, injectable } from 'tsyringe';
+import authConfig from '../../../config/auth';
 
 import AppError from '../../../shared/errors/AppError';
 import IUserRepository from '../repositories/IUserRepository';
@@ -28,8 +28,7 @@ class AuthenticateUserService {
     private hashProvider: IHashProvider,
   ) {}
 
-  public async execute({ email, password}: IRequest): Promise<IResponse> {
-
+  public async execute({ email, password }: IRequest): Promise<IResponse> {
     const user = await this.userRepository.findByEmail(email);
 
     if (!user) {
@@ -38,7 +37,7 @@ class AuthenticateUserService {
 
     const passwordMarched = await this.hashProvider.compareHash(
       password,
-      user.password
+      user.password,
     );
 
     if (!passwordMarched) {
@@ -47,9 +46,11 @@ class AuthenticateUserService {
 
     const { secret, expiresIn } = authConfig.jwt;
 
+    console.log(expiresIn);
+
     const token = sign({}, secret, {
       subject: user.id,
-      expiresIn
+      expiresIn,
     });
 
     return { user, token };

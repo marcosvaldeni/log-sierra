@@ -1,51 +1,36 @@
 {
   "env": {
-    "es2020": true,
-    "node": true,
-    "jest": true
+      "es2021": true,
+      "node": true
   },
   "extends": [
-    "airbnb-base",
-    "plugin:@typescript-eslint/recommended",
-    "prettier/@typescript-eslint",
-    "plugin:prettier/recommended"
+      "airbnb-base",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:prettier/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaVersion": 2018,
-    "sourceType": "module"
+      "ecmaVersion": 12,
+      "sourceType": "module"
   },
   "plugins": [
-    "@typescript-eslint",
-    "prettier"
+      "@typescript-eslint",
+      "prettier"
   ],
   "rules": {
     "prettier/prettier": "error",
-    "no-useless-constructor": "off",
-    "no-unused-vars": "off",
-    "camelcase": "off",
-  "@typescript-eslint/no-unused-vars": [
-    "warn",
-    {
-      "argsIgnorePattern": "^_"
-    }
-  ],
-    "@typescript-eslint/naming-convention": [
-      "error",
-      {
-        "selector": "interface",
-        "prefix": ["I"],
-        "format": ["PascalCase"]
-      }
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": [
+      "error"
     ],
-    "class-methods-use-this":"off",
-    "import/extensions": [
+     "import/extensions": [
       "error",
       "ignorePackages",
       {
         "ts": "never"
       }
-    ]
+    ],
+    "no-useless-constructor": "off"
   },
   "settings": {
     "import/resolver": {
