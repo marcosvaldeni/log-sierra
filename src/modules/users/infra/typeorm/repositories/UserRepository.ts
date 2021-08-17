@@ -10,12 +10,6 @@ class UserRepository implements IUserRepository {
     this.ormRepository = getRepository(User);
   }
 
-  public async findById(id: string): Promise<User | undefined> {
-    const user = await this.ormRepository.findOne(id);
-
-    return user;
-  }
-
   public async create(data: ICreateUserDTO): Promise<User> {
     const user = await this.ormRepository.create(data);
 
@@ -24,8 +18,26 @@ class UserRepository implements IUserRepository {
     return user;
   }
 
-  public async findAll(): Promise<User[] | undefined> {
+  public async read(id: string): Promise<User | undefined> {
+    return this.findById(id);
+  }
+
+  public async update(user: User): Promise<User> {
+    return this.ormRepository.save(user);
+  }
+
+  public async delete(id: string): Promise<boolean> {
     throw new Error('Method not implemented.');
+  }
+
+  public async findById(id: string): Promise<User | undefined> {
+    const user = await this.ormRepository.findOne(id);
+
+    return user;
+  }
+
+  public async findAll(): Promise<User[] | undefined> {
+    return await this.ormRepository.find();
   }
 
   public async findByEmail(email: string): Promise<User | undefined> {
@@ -34,14 +46,6 @@ class UserRepository implements IUserRepository {
     });
 
     return user;
-  }
-
-  public async update(data: ICreateUserDTO): Promise<User> {
-    throw new Error('Method not implemented.');
-  }
-
-  public async delete(id: string): Promise<boolean> {
-    throw new Error('Method not implemented.');
   }
 }
 

@@ -10,10 +10,10 @@ interface ITokenPayload {
   sub: string;
 }
 
-export default function  ensureAuthenticate(
+export default function ensureAuthenticate(
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): void {
   const authHeader = req.headers.authorization;
 
@@ -30,7 +30,7 @@ export default function  ensureAuthenticate(
 
     req.user = {
       id: sub,
-    }
+    };
 
     return next();
   } catch (error) {

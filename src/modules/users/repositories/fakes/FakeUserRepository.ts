@@ -18,6 +18,22 @@ class FakeUserRepository implements IUserRepository {
     return user;
   }
 
+  public async read(id: string): Promise<User | undefined> {
+    return this.findById(id);
+  }
+
+  public async update(user: User): Promise<User> {
+    const findIndex = this.users.findIndex(findUser => findUser.id === user.id);
+
+    this.users[findIndex] = user;
+
+    return user;
+  }
+
+  public async delete(id: string): Promise<boolean> {
+    throw new Error('Method not implemented.');
+  }
+
   public async findById(id: string): Promise<User | undefined> {
     const findUser = this.users.find(user => user.id === id);
 
@@ -28,14 +44,6 @@ class FakeUserRepository implements IUserRepository {
     const findUser = this.users.find(user => user.email === email);
 
     return findUser;
-  }
-
-  public async update(data: ICreateUserDTO): Promise<User> {
-    throw new Error('Method not implemented.');
-  }
-
-  public async delete(id: string): Promise<boolean> {
-    throw new Error('Method not implemented.');
   }
 }
 

@@ -37,7 +37,35 @@ class UpdateProfileService {
       throw new AppError('User not found');
     }
 
-    return user;
+    const userWithUpdateEmail = await this.userRepository.findByEmail(email);
+
+    if (userWithUpdateEmail && userWithUpdateEmail.id !== user.id) {
+      throw new AppError('E-mail already in use.');
+    }
+
+    user.name = name;
+    user.email = email;
+
+    if (password && old_password) {
+      const checkOldPassword = await this.hashProvider.compareHash(
+        old_password,
+        user.password,
+      );
+
+      if (!checkOldPassword) {
+        throw new AppError('Old password does not match.');
+      }
+
+      user.password = await this.hashProvider.generateHash(password);
+    }
+
+    if (password && !old_password) {
+      throw new AppError(
+        'You need to inform the old password to set a new password.',
+      );
+    }
+
+    return await this.userRepository.update(user);
   }
 }
 

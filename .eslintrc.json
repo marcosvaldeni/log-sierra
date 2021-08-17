@@ -32,7 +32,8 @@
     ],
     "no-useless-constructor": "off",
     "camelcase": "off",
-    "class-methods-use-this": "off"
+    "class-methods-use-this": "off",
+    "no-return-await": "off"
   },
   "settings": {
     "import/resolver": {
