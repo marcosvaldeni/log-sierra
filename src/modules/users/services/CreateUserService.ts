@@ -1,14 +1,14 @@
-import AppError from '../../../shared/errors/AppError';
 import { injectable, inject } from 'tsyringe';
+import AppError from '../../../shared/errors/AppError';
 
 import User from '../infra/typeorm/entities/User';
 import IUserRepository from '../repositories/IUserRepository';
 import IHashProvider from '../providers/HashProvider/models/IHashProvider';
 
 interface Request {
-  name: string,
-  email: string,
-  password: string,
+  name: string;
+  email: string;
+  password: string;
 }
 
 @injectable()
@@ -18,7 +18,7 @@ class CreateUserService {
     private usersRepository: IUserRepository,
 
     @inject('HashProvider')
-    private hashProvider: IHashProvider
+    private hashProvider: IHashProvider,
   ) {}
 
   public async execute({ name, email, password }: Request): Promise<User> {
