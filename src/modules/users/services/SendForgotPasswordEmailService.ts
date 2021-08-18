@@ -1,9 +1,9 @@
 import { injectable, inject } from 'tsyringe';
 
 import AppError from '../../../shared/errors/AppError';
-import User from '../infra/typeorm/entities/User';
 import IUserRepository from '../repositories/IUserRepository';
 import IMailProvider from '../../../shared/container/providers/MailProvider/models/IMailProvider';
+import IUserTokenRepository from '../repositories/IUserTokenRepository';
 
 interface IRequest {
   email: string;
@@ -17,10 +17,24 @@ class SendForgotPasswordEmailService {
 
     @inject('MailProvider')
     private mailProvider: IMailProvider,
+
+    @inject('UserTokensRepository')
+    private userTokensRepository: IUserTokenRepository,
   ) {}
 
   public async execute({ email }: IRequest): Promise<void> {
-    this.mailProvider.sendMail(email, 'Password recovey request.');
+    const user = await this.usersRepository.findByEmail(email);
+
+    if (!user) {
+      throw new AppError('User does not exists.');
+    }
+
+    const { token } = await this.userTokensRepository.generate(user.id);
+
+    await this.mailProvider.sendMail(
+      email,
+      `Request of password recovery received: ${token}`,
+    );
   }
 }
 
