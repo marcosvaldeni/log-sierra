@@ -17,7 +17,7 @@ describe('CreateUser', () => {
 
     createUserService = new CreateUserService(
       fakeUserRepository,
-      fakeHashProvider
+      fakeHashProvider,
     );
   });
 
@@ -25,7 +25,7 @@ describe('CreateUser', () => {
     const user = await createUserService.execute({
       name: 'John Lock',
       email: 'johnlock@email.com',
-      password: '123456'
+      password: '123456',
     });
 
     await expect(user).toHaveProperty('id');
@@ -35,15 +35,15 @@ describe('CreateUser', () => {
     await createUserService.execute({
       name: 'John Lock',
       email: 'johnlock@email.com',
-      password: '123456'
+      password: '123456',
     });
 
     await expect(
       createUserService.execute({
         name: 'John Lock',
         email: 'johnlock@email.com',
-        password: '123456'
-      })
+        password: '123456',
+      }),
     ).rejects.toBeInstanceOf(AppError);
   });
 });

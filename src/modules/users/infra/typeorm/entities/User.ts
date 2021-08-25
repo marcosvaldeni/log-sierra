@@ -15,6 +15,12 @@ class User {
   name: string;
 
   @Column()
+  title: string;
+
+  @Column()
+  giturl: string;
+
+  @Column()
   email: string;
 
   @Column()

@@ -17,7 +17,7 @@ describe('AuthenticateUser', () => {
 
     authenticateUser = new AuthenticateUser(
       fakeUserRepository,
-      fakeHashProvider
+      fakeHashProvider,
     );
   });
 
@@ -25,12 +25,12 @@ describe('AuthenticateUser', () => {
     const user = await fakeUserRepository.create({
       name: 'John Lock',
       email: 'johnlock@email.com',
-      password: '123456'
+      password: '123456',
     });
 
     const response = await authenticateUser.execute({
       email: 'johnlock@email.com',
-      password: '123456'
+      password: '123456',
     });
 
     expect(response).toHaveProperty('token');
