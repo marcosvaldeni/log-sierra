@@ -5,19 +5,19 @@ import {
   CreateDateColumn,
 } from 'typeorm';
 
-@Entity('users')
-class User {
+@Entity('actives')
+class Active {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @CreateDateColumn()
-  login: Date;
+  activeOn: Date;
 
   @CreateDateColumn()
-  logout: Date;
+  activeOff: Date;
 
   @Column()
   user_id: string;
 }
 
-export default User;
+export default Active;
