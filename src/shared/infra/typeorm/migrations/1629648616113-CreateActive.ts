@@ -5,11 +5,11 @@ import {
   TableForeignKey,
 } from 'typeorm';
 
-export default class CreateLog1629648616113 implements MigrationInterface {
+export default class CreateActive1629648616113 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'logs',
+        name: 'actives',
         columns: [
           {
             name: 'id',
@@ -19,13 +19,13 @@ export default class CreateLog1629648616113 implements MigrationInterface {
             default: 'uuid_generate_v4()',
           },
           {
-            name: 'login',
+            name: 'active_on',
             type: 'timestamp',
             default: 'now()',
             isNullable: false,
           },
           {
-            name: 'logout',
+            name: 'active_off',
             type: 'timestamp',
             default: 'now()',
             isNullable: true,
@@ -40,9 +40,9 @@ export default class CreateLog1629648616113 implements MigrationInterface {
     );
 
     await queryRunner.createForeignKey(
-      'logs',
+      'actives',
       new TableForeignKey({
-        name: 'UserLog',
+        name: 'UserActive',
         columnNames: ['user_id'],
         referencedColumnNames: ['id'],
         referencedTableName: 'users',
@@ -53,8 +53,8 @@ export default class CreateLog1629648616113 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey('logs', 'UserLog');
+    await queryRunner.dropForeignKey('actives', 'UserActive');
 
-    await queryRunner.dropTable('logs');
+    await queryRunner.dropTable('actives');
   }
 }
