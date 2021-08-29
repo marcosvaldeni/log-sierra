@@ -3,26 +3,26 @@ import { v4 as uuid } from 'uuid';
 
 import FakeActiveRepository from '../repositories/fakes/FakeActiveRepository';
 import CreateActiveOutService from './CreateActiveOffService';
-import CreateActiveInService from './CreateActiveOnService';
+import CreateActiveOnService from './CreateActiveOnService';
 
 let fakeActiveRepository: FakeActiveRepository;
 let createActiveOutService: CreateActiveOutService;
-let createActiveInService: CreateActiveInService;
+let createActiveOnService: CreateActiveOnService;
 
 describe('CreateActiveOff', () => {
   beforeEach(() => {
     fakeActiveRepository = new FakeActiveRepository();
 
     createActiveOutService = new CreateActiveOutService(fakeActiveRepository);
-    createActiveInService = new CreateActiveInService(fakeActiveRepository);
+    createActiveOnService = new CreateActiveOnService(fakeActiveRepository);
   });
 
   it('should be able to create a new activeout', async () => {
-    const activeIn = await createActiveInService.execute(uuid());
+    const activeOn = await createActiveOnService.execute(uuid());
 
-    const activeOut = await createActiveOutService.execute(activeIn.user_id);
+    const activeOff = await createActiveOutService.execute(activeOn.user_id);
 
-    await expect(activeOut.activeOn).toBeTruthy();
-    await expect(activeOut.activeOff).toBeTruthy();
+    await expect(activeOff.activeOn).toBeTruthy();
+    await expect(activeOff.activeOff).toBeTruthy();
   });
 });

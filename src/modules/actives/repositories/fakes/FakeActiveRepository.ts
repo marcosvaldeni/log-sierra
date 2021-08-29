@@ -22,14 +22,12 @@ class FakeActiveRepository implements IActiveRepository {
 
     Object.assign(newActive, {
       id: uuid(),
-      Activein: new Date(),
-      Activeout: null,
+      activeOn: new Date(),
+      activeOff: null,
       user_id,
     });
 
     this.userActives.push(newActive);
-
-    console.log(newActive);
 
     return newActive;
   }
@@ -41,7 +39,7 @@ class FakeActiveRepository implements IActiveRepository {
     );
 
     if (!active) {
-      throw new AppError('There is no Active off to be done!');
+      throw new AppError('There is no Active On to be done!');
     }
 
     active.activeOff = new Date();
