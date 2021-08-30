@@ -9,6 +9,8 @@ import IUserTokenRepository from '../../modules/users/repositories/IUserTokenRep
 import UserTokenRepository from '../../modules/users/infra/typeorm/repositories/UserTokenRepository';
 import IActiveRepository from '../../modules/actives/repositories/IActiveRepository';
 import ActiveRepository from '../../modules/actives/infra/typeorm/repositories/ActiveRepository';
+import ILogRepository from '../../modules/users/repositories/ILogRepository';
+import LogRepository from '../../modules/users/infra/typeorm/repositories/LogRepository';
 
 container.registerSingleton<IUserRepository>('UserRepository', UserRepository);
 
@@ -21,3 +23,5 @@ container.registerSingleton<IActiveRepository>(
   'ActiveRepository',
   ActiveRepository,
 );
+
+container.registerSingleton<ILogRepository>('LogRepository', LogRepository);
