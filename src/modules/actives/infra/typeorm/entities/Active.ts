@@ -14,7 +14,7 @@ class Active {
   activeOn: Date;
 
   @CreateDateColumn()
-  activeOff: Date;
+  activeOff: Date | null;
 
   @Column()
   user_id: string;

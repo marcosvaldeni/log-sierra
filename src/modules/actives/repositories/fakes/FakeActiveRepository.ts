@@ -1,6 +1,5 @@
 import { v4 as uuid } from 'uuid';
 
-import AppError from '../../../../shared/errors/AppError';
 import IActiveRepository from '../IActiveRepository';
 
 import Active from '../../infra/typeorm/entities/Active';
@@ -9,15 +8,6 @@ class FakeActiveRepository implements IActiveRepository {
   private userActives: Active[] = [];
 
   public async activeOn(user_id: string): Promise<Active> {
-    const active = this.userActives.find(
-      userActive =>
-        userActive.user_id === user_id && userActive.activeOff === null,
-    );
-
-    if (active) {
-      throw new AppError('An Active still open!');
-    }
-
     const newActive = new Active();
 
     Object.assign(newActive, {
@@ -38,13 +28,13 @@ class FakeActiveRepository implements IActiveRepository {
         userActive.user_id === user_id && userActive.activeOff === null,
     );
 
-    if (!active) {
-      throw new AppError('There is no Active On to be done!');
+    if (active) {
+      active.activeOff = new Date();
+
+      return active;
     }
 
-    active.activeOff = new Date();
-
-    return active;
+    return {} as Active;
   }
 
   public async listActives(user_id: string): Promise<Active[]> {
@@ -53,6 +43,19 @@ class FakeActiveRepository implements IActiveRepository {
     );
 
     return actives;
+  }
+
+  public async checkActive(user_id: string): Promise<boolean> {
+    const active = this.userActives.find(
+      userActive =>
+        userActive.user_id === user_id && userActive.activeOff === null,
+    );
+
+    if (active) {
+      return true;
+    }
+
+    return false;
   }
 }
 

@@ -19,13 +19,13 @@ export default class CreateActive1629648616113 implements MigrationInterface {
             default: 'uuid_generate_v4()',
           },
           {
-            name: 'active_on',
+            name: 'activeOn',
             type: 'timestamp',
             default: 'now()',
             isNullable: false,
           },
           {
-            name: 'active_off',
+            name: 'activeOff',
             type: 'timestamp',
             default: 'now()',
             isNullable: true,

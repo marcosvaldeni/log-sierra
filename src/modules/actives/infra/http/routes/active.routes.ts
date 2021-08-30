@@ -10,6 +10,6 @@ acitveRouter.use(ensureAuthenticated);
 
 acitveRouter.get('/active-on', activeController.activeOn);
 acitveRouter.get('/active-off', activeController.activeOff);
-acitveRouter.get('/actives', activeController.activeList);
+acitveRouter.get('/list', activeController.activeList);
 
 export default acitveRouter;
