@@ -4,6 +4,6 @@ module.exports = {
   entities: [process.env.ENTITIES],
   migrations: [process.env.MIGRATIONS],
   cli: {
-    migrationsDir: './src/shared/infra/typeorm/migrations',
+    migrationsDir: process.env.MIGRATIONSDIR,
   },
 };
