@@ -5,20 +5,20 @@
 <br />
 <p align="center"><img src=".github/logo.svg?raw=true"/></p>
 
----
-
 # :pushpin: Table of Contents
 * [Description](#memo-description)
 * [Made With](#rocket-made-with)
+* [Features](#mage-features)
+* [Frontend](#nail_care-frontend)
 * [Installation](#construction_worker-installation)
 * [Getting Started](#runner-getting-started)
-* [Frontend](#💅-frontend)
 * [Found a bug? Missing a specific feature?](#bug-issues)
 * [Contributing](#tada-contributing)
 * [License](#closed_book-license)
 
 # :memo: Description
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque porta gravida leo, nec fringilla nulla maximus a. Curabitur ultricies mauris quis elit imperdiet, in molestie purus semper. Pellentesque quis elementum libero. Nam cursus tellus ac sollicitudin condimentum. Cras semper diam ac magna malesuada, eu pretium elit congue. Aenean vestibulum libero in tortor vulputate, et posuere metus rhoncus. Vivamus lacinia egestas lectus. Curabitur at sollicitudin nibh, sit amet varius felis. Duis placerat odio a rutrum pellentesque.
+
+LogSierra is a tracking time where you can log in and activate yourself. This way, the system will point in time where you have started your journey. When you finish, just go on the system and deactivate yourself.
 
 # :rocket: Made With
 
@@ -30,6 +30,61 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque porta gravida l
 * 📧 Nodemailer
 * 🔑 JWT
 * 🧪 Jest
+
+# :mage: Features
+
+### Register
+
+  - The user can register with name, email and password;
+
+### Recover Password
+
+  - The user can request a password recover;
+  - The recovery link will expire in 2 hours;
+
+### Login
+
+  - The user can log in or out;
+
+### Reports
+
+  - The user can see his login/logout history;
+  - The user can see his ActivationIn/ActivationOut history;
+
+### Profile Update
+
+  - The user can update his personal data (name, title, email, password);
+  - The user can add his github profile;
+  - The user can delete ALL his personal data;
+
+### Future Features
+
+  - The system will cache all reposts on Redis for increse performance;
+
+### EndPoints
+
+  - `POST` `http://localhost:3000/users`
+  - `POST` `http://localhost:3000/sessions`
+  - `POST` `http://localhost:3000/password/forgot`
+  - `POST` `http://localhost:3000/password/reset`
+  - `GET` `http://localhost:3000/actives/active-on`
+  - `GET` `http://localhost:3000/actives/active-off`
+  - `GET` `http://localhost:3000/actives/list`
+  - `PUT` `http://localhost:3000/actives/profile`
+  - `GET` `http://localhost:3000/actives/profile`
+  - `GET` `http://localhost:3000/logs/list`
+  - `GET` `http://localhost:3000/logs/logout`
+
+### Design Database
+
+<br />
+<p align="center"><img src=".github/db.png?raw=true"/></p>
+
+# nail_care: Frontend
+
+[Frondend Repository](https://github.com/marcosvaldeni/LogSierra)
+
+[Project designed on Figma](https://www.figma.com/file/RjiJK8Qy0ACzMEL8VzrDjA/LogSierra?node-id=0%3A1)
 
 # :construction_worker: Installation
 
@@ -45,12 +100,15 @@ SSH URLs provide access to a Git repository via SSH, a secure protocol. If you h
 
 ### Database
 
-**Using a local database:**
+**In case, you are using a Postgres local, you must have a database named as `logsierra`**
 
-`DROP DATABASE if exists logsierra;`
-`CREATE DATABASE logsierra;`
+Suggesting using the follow commands:
+```
+DROP DATABASE if exists logsierra;
+CREATE DATABASE logsierra;
+```
 
-**Using Docker:**
+**In case, you are using Docker, just run the follow command**
 
 ```
 docker run \
@@ -113,12 +171,9 @@ It shoud shows:
 
 This message means the API is running!
 
-# :💅: Frontend
-[LogSierra](https://github.com/marcosvaldeni/LogSierra)
-
 # :bug: Issues
 
-Feel free to **file a new issue** with a respective title and description on the [Move.Yourself](https://github.com/marcosvaldeni/log-sierra/issues) repository. If you already found a solution to your problem, **I would love to review your pull request**! Have a look at our [contribution guidelines](https://github.com/marcosvaldeni/log-sierra/blob/master/CONTRIBUTING.md) to find out about the coding standards.
+Feel free to **file a new issue** with a respective title and description on the [LogSierra](https://github.com/marcosvaldeni/log-sierra/issues) repository. If you already found a solution to your problem, **I would love to review your pull request**! Have a look at our [contribution guidelines](https://github.com/marcosvaldeni/log-sierra/blob/master/CONTRIBUTING.md) to find out about the coding standards.
 
 # :tada: Contributing
 
