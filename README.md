@@ -80,7 +80,7 @@ LogSierra is a tracking time where you can log in and activate yourself. This wa
 <br />
 <p align="center"><img src=".github/db.png?raw=true"/></p>
 
-# nail_care: Frontend
+# :nail_care: Frontend
 
 [Frondend Repository](https://github.com/marcosvaldeni/LogSierra)
 
